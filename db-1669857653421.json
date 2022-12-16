@@ -1,0 +1,25 @@
+{
+  "data": [
+    
+    {
+      "id": 3,
+      "exercicio": 2022,
+      "descricao_acao": "MODERNIZACAO DO PARQUE TECNOLOGICO",
+      "empenhado": 806998.19,
+      "pago": 130550.19,
+      "orcamento_atualizado": 0,
+      "liquidado": 130550.19,
+      "situacao": "ATIVO"
+    },
+    {
+      "id": 4,
+      "exercicio": 2021,
+      "descricao_acao": "OBRAS DE RECUPERAÇÃO ESTRUTURAL, COM SUBSTITUIÇÃO DE GUARDA-RODAS DOS VIADUTOS QUE COMPOEM O TREVO DAS FORÇAS ARMADAS - AP-1.2 - II R.A. - CIDADE NOVA",
+      "empenhado": 8420021.06,
+      "liquidado": 5896612.12,
+      "pago": 5263610.57,
+      "orcamento_atualizado": 9355578.96,
+      "situacao": "ATIVO"
+    }
+  ]
+}

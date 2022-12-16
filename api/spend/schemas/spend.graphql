@@ -1,0 +1,57 @@
+const { gql } = require('apollo-server')
+
+const spendSchema = gql `
+    type Spend {
+        id: ID!,
+        Exercicio: Int!,
+        Orgao: Int!,
+        Unidade_Orcamentaria: Int!,
+        Programa_de_Trabalho: String!,
+        Acao: Int!,
+        Descricao_Acao: String!,
+        Elemento_Despesa: Int!,
+        Descricao_Elemento: String!,
+        Empenhado: Float!,
+        Pago: Float!,
+        Fonte_de_Recursos: Int!,
+        Descricao_Fonte: String!,
+        Item_Despesa: Int!,
+        Descricao_Item_Despesa: String!,
+        Orcamento_Atualizado: Float!,
+        Liquidado: Float!,
+        Pago_Restos_Pagar: Float!,
+        x: Float,
+        y: Float
+    }
+
+    type Query {
+        spends: [Spend]!,
+        spend(id: ID!): Spend!
+    }
+
+    type Mutation {
+        addSpends(
+            Exercicio: Int!,
+            Orgao: Int!,
+            Unidade_Orcamentaria: Int!,
+            Programa_de_Trabalho: String!,
+            Acao: Int!,
+            Descricao_Acao: String!,
+            Elemento_Despesa: Int!,
+            Descricao_Elemento: String!,
+            Empenhado: Float!,
+            Pago: Float!,
+            Fonte_de_Recursos: Int!,
+            Descricao_Fonte: String!,
+            Item_Despesa: Int!,
+            Descricao_Item_Despesa: String!,
+            Orcamento_Atualizado: Float!,
+            Liquidado: Float!,
+            Pago_Restos_Pagar: Float!,
+            x: Float,
+            y: Float
+        ): Spend!
+    }
+`
+
+module.exports = spendSchema
