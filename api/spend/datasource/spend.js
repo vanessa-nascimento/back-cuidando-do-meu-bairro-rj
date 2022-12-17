@@ -4,6 +4,10 @@ class SpendsAPI extends RESTDataSource {
     constructor() {
         super()
         this.baseURL = 'http://localhost:3000'
+        this.customResponse = {
+            code: 200,
+            message: "Sucesso!"
+        }
     }
 
     async getSpends() {
@@ -16,11 +20,25 @@ class SpendsAPI extends RESTDataSource {
     
     async addSpends(spend) {
         const spends = await this.get('/data')
-        spend.id = spend.Exercicio + spend.Orgao + (spends.length + 1)
-        await this.post('data', {...spend})
+        spend.id = spend.spend.Exercicio + spend.spend.Orgao + (spends.length + 1)
+        spend.spend.updatedAt = new Date().toLocaleString(),
+        await this.post('data', {...spend.spend})
         return({
-            ...spend
+            ...this.customResponse,
+            spend: {
+                ...spend.spend
+            }
         })
+    }
+
+    async deleteSpend(id) {
+        await this.delete(`/data/${id}`)
+        return this.customResponse
+    }
+
+    async deleteAllSpends() {
+        await this.delete('/data')
+        return this.customResponse
     }
 }
 

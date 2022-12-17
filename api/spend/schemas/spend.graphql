@@ -1,8 +1,11 @@
 const { gql } = require('apollo-server')
 
 const spendSchema = gql `
+scalar DateTime
+
     type Spend {
         id: ID!,
+        updateAt: DateTime,
         Exercicio: Int!,
         Orgao: Int!,
         Unidade_Orcamentaria: Int!,
@@ -21,7 +24,30 @@ const spendSchema = gql `
         Liquidado: Float!,
         Pago_Restos_Pagar: Float!,
         x: Float,
-        y: Float
+        y: Float,
+    }
+
+    input SpendInput {
+        updateAt: DateTime,
+        Exercicio: Int,
+        Orgao: Int,
+        Unidade_Orcamentaria: Int,
+        Programa_de_Trabalho: String,
+        Acao: Int,
+        Descricao_Acao: String,
+        Elemento_Despesa: Int,
+        Descricao_Elemento: String,
+        Empenhado: Float,
+        Pago: Float,
+        Fonte_de_Recursos: Int,
+        Descricao_Fonte: String,
+        Item_Despesa: Int,
+        Descricao_Item_Despesa: String,
+        Orcamento_Atualizado: Float,
+        Liquidado: Float,
+        Pago_Restos_Pagar: Float,
+        x: Float,
+        y: Float,
     }
 
     type Query {
@@ -30,27 +56,25 @@ const spendSchema = gql `
     }
 
     type Mutation {
-        addSpends(
-            Exercicio: Int!,
-            Orgao: Int!,
-            Unidade_Orcamentaria: Int!,
-            Programa_de_Trabalho: String!,
-            Acao: Int!,
-            Descricao_Acao: String!,
-            Elemento_Despesa: Int!,
-            Descricao_Elemento: String!,
-            Empenhado: Float!,
-            Pago: Float!,
-            Fonte_de_Recursos: Int!,
-            Descricao_Fonte: String!,
-            Item_Despesa: Int!,
-            Descricao_Item_Despesa: String!,
-            Orcamento_Atualizado: Float!,
-            Liquidado: Float!,
-            Pago_Restos_Pagar: Float!,
-            x: Float,
-            y: Float
-        ): Spend!
+        addSpends(spend: SpendInput): addSpendResponse!
+        deleteSpend(id: ID): deleteSpendsResponse!
+        deleteSpends: deleteSpendsResponse!
+    }
+
+    interface customResponse {
+        code: Int!
+        message: String!
+    }
+
+    type deleteSpendsResponse implements customResponse {
+        code: Int!
+        message: String!
+    }
+
+    type addSpendResponse implements customResponse {
+        code: Int!
+        message: String!
+        spend: Spend!
     }
 `
 
